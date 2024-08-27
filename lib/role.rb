@@ -32,11 +32,11 @@ class Role
           sub = prop[numb, 3]
 
           @win = WIN.include?(sub) if WIN.include?(sub).eql? true
-          break if @win.eql? true
+          return @point if @win.eql? true
         end
       end
     end
-    @tie = true if @head.data[0].length >= 4 && @tail.data[0].length >= 4
+    @tie = true if @head.data[0].length == 4 && @tail.data[0].length == 5
     @point
   end
 end

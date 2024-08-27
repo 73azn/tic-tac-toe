@@ -25,18 +25,15 @@ class Role
     print "player 1 choose #{@tail.data[1]} player 2 you are #{@head.data[1]}\n\n"
   end
 
-  def sort_player
-    @point.data[0] = @point.data[0].sort
-  end
-
-  def check_winner # rubocop:disable Metrics/MethodLength,Metrics/AbcSize
-    sort_player
-    p @point.data[0]
+  def check_winner # rubocop:disable Metrics/AbcSize
     if @win.eql?(false)
-      (0..(@point.data[0].length - 3)).each do |numb|
-        sub = @point.data[0][numb, 3]
-        @win = WIN.include?(sub)
-        break if @win.eql? true
+      @point.data[0].permutation.each do |prop|
+        (0..(prop.length - 3)).each do |numb|
+          sub = prop[numb, 3]
+
+          @win = WIN.include?(sub) if WIN.include?(sub).eql? true
+          break if @win.eql? true
+        end
       end
     end
     @tie = true if @head.data[0].length >= 4 && @tail.data[0].length >= 4

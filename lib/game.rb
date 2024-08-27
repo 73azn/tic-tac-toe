@@ -85,6 +85,7 @@ class Game
     choose = gets.chomp
     choose = choose.downcase
     if choose.eql? 'y'
+      @select = ['o', 'x']
       play
     elsif choose.eql? 'n'
       # do nothing
